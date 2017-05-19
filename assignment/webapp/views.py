@@ -1,6 +1,7 @@
 import  operator
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import RequestCounter
 
 """To return Hello World to the webapp"""
 def index(request):
@@ -8,8 +9,12 @@ def index(request):
 
 """Receives the http request to sort the integers and returns the sorted list"""
 def post(request,*args, **kwargs):
+
     if request.method == "POST":
-        isinterger = False
+        requestCounter = RequestCounter.objects.get(id=1)
+        requestCounter.counter += 1
+        requestCounter.save()
+        print("The numbers of times the '/v1/sort' URL is hit is",requestCounter.counter)
         values = request.POST['sortdata']
         values = values.replace(",","")
         if values.isdigit():
