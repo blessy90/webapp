@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sort</title>
+</head>
+<body>
+Enter integer values to sort with a comma<br/>
+<form action= "v1/sort/" method="post">
+ {% csrf_token %}
+<input id = "sortdata" name = "sortdata" type = "text" value='{{ integer_value }}'/>
+<input type="submit" value="Send" />
+<p id = "sortedlist">Sorted List is {{ sortedlist }}</p>
+</form>
+</body>
+</html>
